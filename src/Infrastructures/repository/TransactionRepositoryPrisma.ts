@@ -89,6 +89,9 @@ export default class TransactionRepositoryPrisma extends TransactionRepository {
       where: {
         AND: params,
       },
+      orderBy: {
+        date: 'desc',
+      },
     });
 
     return result.map((curr) => {
