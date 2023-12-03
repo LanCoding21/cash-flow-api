@@ -42,9 +42,9 @@ export default class UpdateTransaction {
   verifyPayload(payload: IUpdateTransactionPayload) {
     const { type, amount } = payload;
 
-    if (amount < 1) throw new Error('CREATE_TRANSACTION.AMOUNT_IS_INVALID');
+    if (amount < 1) throw new Error('UPDATE_TRANSACTION.AMOUNT_IS_INVALID');
     if (!['INCOME', 'EXPENSE'].includes(type)) {
-      throw new Error('CREATE_TRANSACTION.TYPE_IS_INVALID');
+      throw new Error('UPDATE_TRANSACTION.TYPE_IS_INVALID');
     }
   }
 }

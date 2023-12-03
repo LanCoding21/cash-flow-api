@@ -12,6 +12,8 @@ export default class CreateCategory {
   ownerId: number;
 
   constructor(payload: ICreateCategoryPayload) {
+    this.verifyPayload(payload);
+
     this.name = payload.name;
     this.type = payload.type;
     this.ownerId = payload.ownerId;

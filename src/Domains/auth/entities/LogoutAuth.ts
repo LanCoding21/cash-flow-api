@@ -15,5 +15,8 @@ export default class LogoutAuth {
     if (!refreshToken) {
       throw new Error('LOGOUT_AUTH.NOT_CONTAIN_NEEDED_PROPERTY');
     }
+    if (typeof refreshToken !== 'string') {
+      throw new Error('LOGOUT_AUTH.NOT_MEET_DATA_TYPE_SPECIFICATION');
+    }
   }
 }

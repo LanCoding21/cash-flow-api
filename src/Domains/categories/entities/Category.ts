@@ -27,11 +27,11 @@ export default class Category {
     const { name, type, ownerId } = payload;
 
     if (!name || !type || !ownerId) {
-      throw new Error('CREATE_CATEGORY.NOT_CONTAIN_NEEDED_PROPERTY');
+      throw new Error('CATEGORY.NOT_CONTAIN_NEEDED_PROPERTY');
     }
 
     if (!['INCOME', 'EXPENSE'].includes(type)) {
-      throw new Error('CREATE_CATEGORY.TYPE_IS_INVALID');
+      throw new Error('CATEGORY.TYPE_IS_INVALID');
     }
   }
 }
