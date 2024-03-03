@@ -64,7 +64,7 @@ transactionRouter.put(
     },
     fileFilter: (req, file, callback) => {
       const ext = path.extname(file.originalname);
-      if (!['.png', '.jpg', '.gif', '.jpeg'].includes(ext)) {
+      if (!['.png', '.jpg', '.gif', '.jpeg', '.pdf'].includes(ext)) {
         return callback(new InvariantError('Only images are allowed'));
       }
       return callback(null, true);
