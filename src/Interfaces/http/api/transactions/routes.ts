@@ -36,8 +36,8 @@ transactionRouter.post(
     },
     fileFilter: (req, file, callback) => {
       const ext = path.extname(file.originalname);
-      if (!['.png', '.jpg', '.gif', '.jpeg'].includes(ext)) {
-        return callback(new InvariantError('Only images are allowed'));
+      if (!['.png', '.jpg', '.gif', '.jpeg', '.pdf'].includes(ext)) {
+        return callback(new InvariantError('File type is not allowed'));
       }
       return callback(null, true);
     },

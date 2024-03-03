@@ -91,7 +91,9 @@ export default class CategoryRepositoryPrisma extends CategoryRepository {
   }
 
   async verifyCategoryAvailability(id: number): Promise<void> {
-    const curr = await this.prisma.category.findFirst({ where: { id } });
+    const curr = await this.prisma.category.findFirst({
+      where: { id, status: 1 },
+    });
     if (!curr) throw new NotFoundError('Category not found');
   }
 
@@ -104,7 +106,7 @@ export default class CategoryRepositoryPrisma extends CategoryRepository {
   }
 
   async getCategoryCount(payload: GetAllCategory): Promise<number> {
-    const { limit, offset, type, ownerId, searchText } = payload;
+    const { type, ownerId, searchText } = payload;
 
     const params: any[] = [{ status: 1 }];
     const orParams: any[] = [];
@@ -126,8 +128,6 @@ export default class CategoryRepositoryPrisma extends CategoryRepository {
       });
     }
     const result = await this.prisma.category.count({
-      take: limit,
-      skip: offset,
       where: {
         AND: params,
         OR: searchText ? orParams : undefined,
