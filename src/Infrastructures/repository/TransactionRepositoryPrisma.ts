@@ -8,7 +8,7 @@ import Transaction from '../../Domains/transactions/entities/Transaction';
 import Category from '../../Domains/categories/entities/Category';
 import GetAllTransaction from '../../Domains/transactions/entities/GetAllTransaction';
 import SummarizeDailyTransaction from '../../Domains/transactions/entities/SummarizeDailyTransaction';
-import { IGetSummarizeDailyTransactionPayload } from '../../Domains/transactions/entities/GetSummarizeDailyTransaction';
+import GetSummarizeDailyTransaction from '../../Domains/transactions/entities/GetSummarizeDailyTransaction';
 
 export default class TransactionRepositoryPrisma extends TransactionRepository {
   prisma: PrismaClient;
@@ -171,7 +171,7 @@ export default class TransactionRepositoryPrisma extends TransactionRepository {
   }
 
   async summarizeDailyTransaction(
-    payload: IGetSummarizeDailyTransactionPayload,
+    payload: GetSummarizeDailyTransaction,
   ): Promise<SummarizeDailyTransaction[]> {
     const dailyGroup = await this.prisma.transactions.groupBy({
       by: ['date', 'type', 'categoryId'],
@@ -181,8 +181,8 @@ export default class TransactionRepositoryPrisma extends TransactionRepository {
       where: {
         ownerId: payload.ownerId,
         date: {
-          gte: new Date(payload.dateStart),
-          lte: new Date(payload.dateEnd),
+          gte: payload.dateStart,
+          lte: payload.dateEnd,
         },
         status: 1,
       },

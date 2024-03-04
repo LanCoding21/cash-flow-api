@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import CreateTransaction from './entities/CreateTransaction';
 import GetAllTransaction from './entities/GetAllTransaction';
-import { IGetSummarizeDailyTransactionPayload } from './entities/GetSummarizeDailyTransaction';
+import GetSummarizeDailyTransaction from './entities/GetSummarizeDailyTransaction';
 import SummarizeDailyTransaction from './entities/SummarizeDailyTransaction';
 import Transaction from './entities/Transaction';
 import UpdateTransaction from './entities/UpdateTransaction';
@@ -39,7 +39,7 @@ export default class TransactionRepository {
   }
 
   async summarizeDailyTransaction(
-    payload: IGetSummarizeDailyTransactionPayload,
+    payload: GetSummarizeDailyTransaction,
   ): Promise<SummarizeDailyTransaction[]> {
     throw new Error('TRANSACTION_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }

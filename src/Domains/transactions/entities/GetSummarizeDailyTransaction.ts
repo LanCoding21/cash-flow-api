@@ -5,15 +5,15 @@ export interface IGetSummarizeDailyTransactionPayload {
 }
 
 export default class GetSummarizeDailyTransaction {
-  dateStart: string;
+  dateStart: Date;
 
-  dateEnd: string;
+  dateEnd: Date;
 
   ownerId: number;
 
   constructor(payload: IGetSummarizeDailyTransactionPayload) {
-    this.dateStart = payload.dateStart;
-    this.dateEnd = payload.dateEnd;
+    this.dateStart = new Date(payload.dateStart);
+    this.dateEnd = new Date(payload.dateEnd);
     this.ownerId = payload.ownerId;
   }
 }
