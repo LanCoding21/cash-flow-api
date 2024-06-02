@@ -1,5 +1,7 @@
 import CategoryRepository from '../../../Domains/categories/CategoryRepository';
-import GetAllCategory from '../../../Domains/categories/entities/GetAllCategory';
+import GetAllCategory, {
+  IGetAllCategoriesPayload,
+} from '../../../Domains/categories/entities/GetAllCategory';
 
 export default class GetCategoryCountUseCase {
   repository: CategoryRepository;
@@ -8,8 +10,9 @@ export default class GetCategoryCountUseCase {
     this.repository = repository;
   }
 
-  async execute(payload: GetAllCategory) {
-    const count = await this.repository.getCategoryCount(payload);
+  async execute(payload: IGetAllCategoriesPayload) {
+    const dto = new GetAllCategory(payload);
+    const count = await this.repository.getCategoryCount(dto);
 
     return count;
   }

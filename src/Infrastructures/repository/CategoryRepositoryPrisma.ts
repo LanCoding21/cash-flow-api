@@ -16,7 +16,7 @@ export default class CategoryRepositoryPrisma extends CategoryRepository {
   }
 
   async getAll(payload: GetAllCategory): Promise<Category[]> {
-    const { limit, offset, type, ownerId, searchText } = payload;
+    const { limit, type, ownerId, searchText, offset: skip } = payload;
 
     const params: any[] = [{ status: 1 }];
     const orParams: any[] = [];
@@ -38,7 +38,6 @@ export default class CategoryRepositoryPrisma extends CategoryRepository {
       });
     }
 
-    const skip = offset && limit ? (offset - 1) * limit : undefined;
     const result = await this.prisma.category.findMany({
       take: limit,
       skip,
