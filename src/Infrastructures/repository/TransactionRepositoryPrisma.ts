@@ -44,8 +44,15 @@ export default class TransactionRepositoryPrisma extends TransactionRepository {
 
   async getAllTransaction(payload: GetAllTransaction): Promise<Transaction[]> {
     // eslint-disable-next-line operator-linebreak
-    const { limit, offset, type, ownerId, date, categoryId, searchText } =
-      payload;
+    const {
+      limit,
+      offset: skip,
+      type,
+      ownerId,
+      date,
+      categoryId,
+      searchText,
+    } = payload;
 
     const params: any[] = [{ status: 1 }];
 
@@ -77,8 +84,6 @@ export default class TransactionRepositoryPrisma extends TransactionRepository {
         },
       });
     }
-
-    const skip = offset && limit ? (offset - 1) * limit : undefined;
 
     const result = await this.prisma.transactions.findMany({
       take: limit,

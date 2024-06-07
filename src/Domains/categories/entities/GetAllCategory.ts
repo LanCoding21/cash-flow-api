@@ -1,27 +1,20 @@
-interface IGetAllCategoriesPayload {
+import GetAllPayload, {
+  IGetAllPayload,
+} from '../../common/entities/GetAllPayload';
+
+export interface IGetAllCategoriesPayload extends IGetAllPayload {
   ownerId?: number;
   type?: string;
-  limit?: number;
-  offset?: number;
-  searchText?: string;
 }
 
-export default class GetAllCategory {
+export default class GetAllCategory extends GetAllPayload {
   ownerId?: number;
 
   type?: string;
 
-  limit?: number;
-
-  offset?: number;
-
-  searchText?: string;
-
   constructor(payload: IGetAllCategoriesPayload) {
+    super(payload);
     this.ownerId = payload.ownerId;
     this.type = payload.type;
-    this.limit = payload.limit;
-    this.offset = payload.offset;
-    this.searchText = payload.searchText;
   }
 }

@@ -6,7 +6,7 @@ import AuthenticationError from '../../Commons/exceptions/AuthenticationError';
 export default class JwtTokenManager extends TokenManager {
   createAccessToken(payload: any): string {
     const token = jwt.sign(payload, process.env.ACCESS_TOKEN_KEY!, {
-      expiresIn: '30s',
+      expiresIn: process.env.ACCCESS_TOKEN_AGE,
     });
     return token;
   }
